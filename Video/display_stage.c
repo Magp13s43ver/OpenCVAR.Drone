@@ -1,7 +1,7 @@
 /**
  * @file display_stage.c
- * @author nicolas.brulez@parrot.com
- * @date 2012/09/25
+ * @author nicolas.brulez@parrot.com modified by BrandonTeh@ku.edu
+ * @date 09/07/2014
  *
  * This stage is a naive example of how to display video using GTK2 + Cairo
  * In a complete application, all GTK handling (gtk main thread + widgets/window creation)
@@ -36,14 +36,8 @@ const vp_api_stage_funcs_t display_stage_funcs = {
 };
 
 static int temp_x, temp_y, cur_x, cur_y, count;
-/*
-int get_location(int *x, int *y)
-{
-    *x = face_x;
-    *y = face_y; 
-    return 1;
-}
-*/
+
+//Function to detect faces obtained from https://gist.github.com/nikotan/1148913
 void doMosaic(IplImage* in, int x0, int y0, int width, int height, int size)
 {
 	int b, g, r, col, row;
@@ -101,6 +95,8 @@ void doMosaic(IplImage* in, int x0, int y0, int width, int height, int size)
  	}
 }
 
+
+//Function to convert images to OpenCV format for processing obtained from http://petrkout.com/linux/parrot-ardrone-2-0-video-streaming-through-opencv-in-linux/
 IplImage *ipl_image_from_data(uint8_t* data, int reduced_image, int width, int height)
 {
   	IplImage *currframe;
